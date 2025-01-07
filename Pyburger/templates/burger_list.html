@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>this is list of Pyburger's menu</h1>
+    {% for i in burgers %}
+        <div>
+            name {{ i.name }}
+
+            price {{ i.price }}
+
+            calories {{ i.calories }}
+
+        </div>
+    {% endfor %}
+
+</body>
+</html>

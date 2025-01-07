@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="navbar">
+        <span>pylog</span>
+    </div>
+    <div id="post-list">
+        <ul class="posts">
+            {% for i in posts %}
+                <li class="post">
+                    <div>{{ i.title }}</div>
+                    <p>{{ i.content }}</p>
+                    <ul class="comment">
+                        {% for j in i.comment_set.all %}
+                            <li class="comment">
+                                {{ j.content }}
+                            </li>
+                        {% empty %}
+                            <li class="comment-empty">
+                                No comment yet
+                            </li>
+
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
