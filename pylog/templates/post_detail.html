@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="navbar">
+        {% if post.thumbnail %}
+            <img src="{{ post.thumbnail.url }}">
+        {% endif %}
+        <span>{{ post.title }}<span>
+    </div>
+
+    <div id="post-detail">
+        <p>{{ post.content|linebreaksbr }}</p>
+        <ul class="comments">
+            {% for i in post.comment_set.all %}
+                <li class="comment">
+                    {{ i.content }}
+                </li>
+            {% empty %}
+                <li class="comment-empty">
+                    No comment yet, it's OK you're not alone!
+                </li>
+            {% endfor %}
+        </ul>
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="comment"></textarea>
+            <button type="submit" class="btn btn-primary">Leave a Comment</button>
+        </form>
+    </div>
+
+
+    <div>
+        <span style="padding:10px; background-color:lightblue">
+            <a href="/posts/">move to list</a>
+        </span>
+    </div>
+
+</body>
+</html>

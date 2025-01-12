@@ -5,6 +5,8 @@ from django.db import models
 class Post(models.Model):
     title = models.CharField("title of post", max_length = 100)
     content = models.TextField("content of post")
+    thumbnail = models.ImageField("Thumbnail image", upload_to = "post", blank = True)
+
 
     '''
     __str__이 필요한 이유:
@@ -19,5 +21,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.post.title}'s comment (ID : {self.id})"
-
-

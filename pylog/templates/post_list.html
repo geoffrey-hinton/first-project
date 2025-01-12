@@ -9,12 +9,13 @@
 <body>
     <div id="navbar">
         <span>pylog</span>
+        <a href="/posts/add/" class="btn btn-primary">Create Post</a>
     </div>
     <div id="post-list">
         <ul class="posts">
             {% for i in posts %}
                 <li class="post">
-                    <div>{{ i.title }}</div>
+                    <div><a href="/posts/{{ i.id }}/">{{ i.title }}</a></div>
                     <p>{{ i.content }}</p>
                     <ul class="comment">
                         {% for j in i.comment_set.all %}
@@ -23,14 +24,25 @@
                             </li>
                         {% empty %}
                             <li class="comment-empty">
-                                No comment yet
+                                No comments yet
                             </li>
 
                         {% endfor %}
                     </ul>
+                    {% if i.thumbnail %}
+                        <img src = "{{ i.thumbnail.url }}" alt="">
+                    {% else %}
+                        <img src = "" alt = "">
+                    {% endif %}
+
                 </li>
             {% endfor %}
         </ul>
+    </div>
+    <div>
+        <span style = "padding: 10px; background-color: lightblue">
+            <a href="../">move to main</a>
+        </span>
     </div>
 
 </body>

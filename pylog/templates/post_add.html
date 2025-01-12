@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="navbar">
+        <span>Create Post</span>
+    </div>
+    <div id="post-add">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label>title</label>
+                <input name="title" type="text">
+            </div>
+            <div>
+                <label>content</label>
+                <textarea name="content"></textarea>
+            </div>
+            <div>
+                <label>Thumb nail</label>
+                <input name="thumbnail" type="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</body>
+</html>
