@@ -1,0 +1,27 @@
+{% extends 'base_nav.html' %}
+
+{% block content %}
+
+<div id="tags">
+    <header class = "tags-header">
+        <h2>#{{ tag_name }}</h2>
+        <div>Posts({{ posts.count }})</div>
+    </header>
+    <div class="post-grid-container">
+        {% for post in posts %}
+
+<!--            Post에 연결된 PostImage가 있으며, 연결된 첫 번째 Post Imange의 photo가 있는경우-->
+            {% if post.postimage_set.first and post.postimage_set.first.photo %}
+                <div class="post-grid">
+                    <a href="{% url 'posts:post_detail' post_id = post.id %}">
+                        <img src="{{ post.postimage_set.first.photo.url }}" alt="">
+                    </a>
+                </div>
+            {% endif %}
+        {% empty %}
+                <p>No search results found.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
